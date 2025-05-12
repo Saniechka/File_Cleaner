@@ -160,15 +160,7 @@ def analyze_files(files, duplicates):
             })
         
         
-        if has_bad_chars(file["path"]):
-            new_name = sanitize_filename(file["name"])
-            new_path = os.path.join(os.path.dirname(file["path"]), new_name)
-            grouped_actions["bad_chars"].append({
-                "path": file["path"],
-                "action": "rename",
-                "new_path": new_path,
-                "reason": "Problematic characters in name"
-            })
+       
         
        
         if is_nonstandard_permissions(file["path"]):
@@ -177,6 +169,16 @@ def analyze_files(files, duplicates):
                 "action": "chmod",
                 "new_mode": DEFAULT_PERMISSIONS,
                 "reason": "Non-standard permissions"
+            })
+
+        if has_bad_chars(file["path"]):
+            new_name = sanitize_filename(file["name"])
+            new_path = os.path.join(os.path.dirname(file["path"]), new_name)
+            grouped_actions["bad_chars"].append({
+                "path": file["path"],
+                "action": "rename",
+                "new_path": new_path,
+                "reason": "Problematic characters in name"
             })
         
         
@@ -209,6 +211,8 @@ def analyze_files(files, duplicates):
                 "reason": f"Duplicate of {suggestion['keep']}"
             })
     
+    
+
     return grouped_actions
 
 

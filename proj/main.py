@@ -3,7 +3,7 @@ import sys
 import stat
 import argparse
 from modules import scan_directories, analyze_files, execute_action, save_actions_to_json, load_actions_from_json
-from config import DEFAULT_PERMISSIONS
+from config import DEFAULT_PERMISSIONS,MAIN_FOLDER
 
 
 
@@ -105,7 +105,7 @@ def get_group_choice(group_name, actions, mode):
                 elif choice == 'k':
                     return choice
                 elif choice == 's':
-                    return None
+                    return []
             print("Invalid choice. Please try again.")
 
 def select_groups_and_actions(grouped_actions):
@@ -205,19 +205,36 @@ def main():
         
         print("Processing files...")
         deleted_paths = set()
+        renamed_paths ={}
         if mode == "select":
-           
+            
             selected_groups = select_groups_and_actions(grouped_actions)
-            for group_name, chosen_action in selected_groups.items():
-                if chosen_action:
-                    for action in grouped_actions[group_name]:
-                        if chosen_action == "move" and action["path"] in deleted_paths:
-                            print(f"Skipped moving {action['path']}: already deleted")
+            renamed_paths = {}  # Dodajemy, by śledzić zmiany nazw
+            
+            for group_name, actions in selected_groups.items():
+                for action in actions:
+                    original_path = action["path"]
+                    current_path = renamed_paths.get(original_path, original_path)
+                    action["path"] = current_path
+
+                    if action["action"] == "move":
+                        if current_path in deleted_paths:
+                            print(f"Skipped moving {current_path}: already deleted")
                             continue
-                        result = execute_action({**action, "action": chosen_action})
-                        print(result)
-                        if chosen_action == "delete" and result.startswith("Deleted:"):
-                            deleted_paths.add(action["path"])
+                        action["new_path"] = os.path.join(
+                            os.path.dirname(action["new_path"]),
+                            os.path.basename(current_path)
+                        )
+
+                    result = execute_action(action)
+                    print(result)
+
+                    if action["action"] == "delete" and result.startswith("Deleted:"):
+                        deleted_paths.add(current_path)
+
+                    if action["action"] == "rename" and result.startswith("Renamed:"):
+                        renamed_paths[original_path] = action["new_path"]
+
 
         elif mode == "auto":
         
@@ -232,8 +249,17 @@ def main():
                             deleted_paths.add(action["path"])
                     elif group_name == "bad_chars":
                         result = execute_action({**action, "action": "rename"})
+                        renamed_paths[action["path"]] = action["new_path"]
                         print(result)
                     elif group_name == "move_to_x" and action["path"] not in deleted_paths:
+                        if action["path"] in renamed_paths:
+                            #old_dir = os.path.dirname(action["path"])
+                            new_name = os.path.basename(renamed_paths[action["path"]])  
+                            new_path = os.path.join(MAIN_FOLDER, new_name)  
+                            action["path"] = renamed_paths[action["path"]]  
+                            action["new_path"] = new_path
+
+                           
                         result = execute_action({**action, "action": "move"})
                         print(result)
 

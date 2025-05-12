@@ -1,11 +1,6 @@
 {
     "empty": [
         {
-            "path": "../y1/empty.txt",
-            "action": "delete",
-            "reason": "Empty file"
-        },
-        {
             "path": "../y2/zero.txt",
             "action": "delete",
             "reason": "Empty file"
@@ -28,31 +23,18 @@
             "reason": "Temporary file"
         }
     ],
-    "bad_chars": [
-        {
-            "path": "../x/photo#album.jpg",
-            "action": "rename",
-            "new_path": "../x/photo_album.jpg",
-            "reason": "Problematic characters in name"
-        },
-        {
-            "path": "../y1/test:file*.txt",
-            "action": "rename",
-            "new_path": "../y1/test_file_.txt",
-            "reason": "Problematic characters in name"
-        }
-    ],
+    "bad_chars": [],
     "nonstandard_perms": [
         {
             "path": "../y1/executable.txt",
             "action": "chmod",
-            "new_mode": "rw-r--r--",
+            "new_mode": 420,
             "reason": "Non-standard permissions"
         },
         {
             "path": "../y2/write_all.txt",
             "action": "chmod",
-            "new_mode": "rw-r--r--",
+            "new_mode": 420,
             "reason": "Non-standard permissions"
         }
     ],
@@ -78,18 +60,13 @@
             "path": "../y2/duplicate.txt",
             "action": "delete",
             "reason": "Duplicate of ../x/original.txt"
-        },
-        {
-            "path": "../y1/empty.txt",
-            "action": "delete",
-            "reason": "Duplicate of ../y2/zero.txt"
         }
     ],
     "move_to_x": [
         {
-            "path": "../x/photo#album.jpg",
+            "path": "../x/photo_album.jpg",
             "action": "move",
-            "new_path": "../main/photo#album.jpg",
+            "new_path": "../main/photo_album.jpg",
             "reason": "Move to ../main"
         },
         {
@@ -117,6 +94,12 @@
             "reason": "Move to ../main"
         },
         {
+            "path": "../y1/test_file_.txt",
+            "action": "move",
+            "new_path": "../main/test_file_.txt",
+            "reason": "Move to ../main"
+        },
+        {
             "path": "../y1/doc.txt",
             "action": "move",
             "new_path": "../main/doc.txt",
@@ -126,12 +109,6 @@
             "path": "../y1/file.bak",
             "action": "move",
             "new_path": "../main/file.bak",
-            "reason": "Move to ../main"
-        },
-        {
-            "path": "../y1/test:file*.txt",
-            "action": "move",
-            "new_path": "../main/test:file*.txt",
             "reason": "Move to ../main"
         },
         {
