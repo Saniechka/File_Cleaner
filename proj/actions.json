@@ -87,76 +87,100 @@
     ],
     "move_to_x": [
         {
+            "path": "../x/photo#album.jpg",
+            "action": "move",
+            "new_path": "../main/photo#album.jpg",
+            "reason": "Move to ../main"
+        },
+        {
+            "path": "../x/doc.txt",
+            "action": "move",
+            "new_path": "../main/doc.txt",
+            "reason": "Move to ../main"
+        },
+        {
+            "path": "../x/original.txt",
+            "action": "move",
+            "new_path": "../main/original.txt",
+            "reason": "Move to ../main"
+        },
+        {
+            "path": "../x/temp.tmp",
+            "action": "move",
+            "new_path": "../main/temp.tmp",
+            "reason": "Move to ../main"
+        },
+        {
             "path": "../y1/executable.txt",
             "action": "move",
-            "new_path": "../x/executable.txt",
-            "reason": "Move to ../x"
+            "new_path": "../main/executable.txt",
+            "reason": "Move to ../main"
         },
         {
             "path": "../y1/doc.txt",
             "action": "move",
-            "new_path": "../x/doc.txt",
-            "reason": "Move to ../x"
+            "new_path": "../main/doc.txt",
+            "reason": "Move to ../main"
         },
         {
             "path": "../y1/file.bak",
             "action": "move",
-            "new_path": "../x/file.bak",
-            "reason": "Move to ../x"
+            "new_path": "../main/file.bak",
+            "reason": "Move to ../main"
         },
         {
             "path": "../y1/test:file*.txt",
             "action": "move",
-            "new_path": "../x/test:file*.txt",
-            "reason": "Move to ../x"
+            "new_path": "../main/test:file*.txt",
+            "reason": "Move to ../main"
         },
         {
             "path": "../y1/normal1.txt",
             "action": "move",
-            "new_path": "../x/normal1.txt",
-            "reason": "Move to ../x"
+            "new_path": "../main/normal1.txt",
+            "reason": "Move to ../main"
         },
         {
             "path": "../y1/copy.txt",
             "action": "move",
-            "new_path": "../x/copy.txt",
-            "reason": "Move to ../x"
+            "new_path": "../main/copy.txt",
+            "reason": "Move to ../main"
         },
         {
             "path": "../y2/note.txt~",
             "action": "move",
-            "new_path": "../x/note.txt~",
-            "reason": "Move to ../x"
+            "new_path": "../main/note.txt~",
+            "reason": "Move to ../main"
         },
         {
             "path": "../y2/write_all.txt",
             "action": "move",
-            "new_path": "../x/write_all.txt",
-            "reason": "Move to ../x"
+            "new_path": "../main/write_all.txt",
+            "reason": "Move to ../main"
         },
         {
             "path": "../y2/duplicate.txt",
             "action": "move",
-            "new_path": "../x/duplicate.txt",
-            "reason": "Move to ../x"
+            "new_path": "../main/duplicate.txt",
+            "reason": "Move to ../main"
         },
         {
             "path": "../y2/doc.txt",
             "action": "move",
-            "new_path": "../x/doc.txt",
-            "reason": "Move to ../x"
+            "new_path": "../main/doc.txt",
+            "reason": "Move to ../main"
         },
         {
             "path": "../y2/doc space.txt",
             "action": "move",
-            "new_path": "../x/doc space.txt",
-            "reason": "Move to ../x"
+            "new_path": "../main/doc space.txt",
+            "reason": "Move to ../main"
         },
         {
             "path": "../y2/normal2.txt",
             "action": "move",
-            "new_path": "../x/normal2.txt",
-            "reason": "Move to ../x"
+            "new_path": "../main/normal2.txt",
+            "reason": "Move to ../main"
         }
     ]
 }

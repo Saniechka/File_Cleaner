@@ -10,6 +10,7 @@ from config import BAD_CHARS, REPLACE_CHAR
 from config import SCAN_DIRS
 from config import DEFAULT_PERMISSIONS, SCAN_DIRS
 from config import ACTIONS_FILE
+from config import MAIN_FOLDER
 
 def is_empty(path):
     try:
@@ -179,13 +180,13 @@ def analyze_files(files, duplicates):
             })
         
         
-        if file["dir"] != SCAN_DIRS[0]:  
-            new_path = os.path.join(SCAN_DIRS[0], file["name"])
+        if file["dir"] != MAIN_FOLDER:  
+            new_path = os.path.join(MAIN_FOLDER, file["name"])
             grouped_actions["move_to_x"].append({
                 "path": file["path"],
                 "action": "move",
                 "new_path": new_path,
-                "reason": f"Move to {SCAN_DIRS[0]}"
+                "reason": f"Move to {MAIN_FOLDER}"
             })
     
    

@@ -1,8 +1,14 @@
 import os
 import sys
 import stat
+import argparse
 from modules import scan_directories, analyze_files, execute_action, save_actions_to_json, load_actions_from_json
 from config import DEFAULT_PERMISSIONS
+
+
+
+
+
 
 def print_group_actions(group_name, actions):
     print(f"\n=== {group_name.replace('_', ' ').title()} ({len(actions)} files) ===")
@@ -136,13 +142,26 @@ def select_groups_and_actions(grouped_actions):
 
     return selected_groups
 
+
+
+
+def parse_arguments():
+    parser = argparse.ArgumentParser(
+        description="Narzędzie do czyszczenia folderow"
+    )
+    parser.add_argument(
+        "mode",
+        choices=["analyze", "auto", "replay", "select", "json"],
+        nargs='?',
+        default="analyze",
+        help="Tryb działania: analyze (interaktywny,kazdy plik podtwierdzamy), auto (automatyczny), replay ( wykonaj akcje z JSON-a), select ( grupy plików), json (generuj  JSON)"
+    )
+    return parser.parse_args()
+
+
 def main():
-    mode = "analyze"  # Default mode
-    if len(sys.argv) > 1:
-        mode = sys.argv[1].lower()
-        if mode not in ["analyze", "auto", "replay", "select", "json"]:
-            print("Invalid mode. Use: analyze, auto, replay, select, json")
-            return
+    args = parse_arguments()
+    mode = args.mode
 
     if mode == "json":
         files, duplicates = scan_directories()

@@ -8,4 +8,5 @@ REPLACE_CHAR = "_"
 DEFAULT_PERMISSIONS = "rw-r--r--"
 ACTIONS_FILE = "actions.json"
 
+MAIN_FOLDER = "../main"
 MODE ="auto" #analyze", "auto", "replay"
