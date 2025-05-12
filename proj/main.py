@@ -23,7 +23,7 @@ def print_group_actions(group_name, actions):
         print("-" * 50)
 
 def get_file_choice(action):
-    # user file choise
+   
     print(f"\nFile: {action['path']}")
     print(f"Suggested action: {action['action']}")
     if action.get("new_path"):
@@ -209,7 +209,7 @@ def main():
         if mode == "select":
             
             selected_groups = select_groups_and_actions(grouped_actions)
-            renamed_paths = {}  # Dodajemy, by śledzić zmiany nazw
+            renamed_paths = {}  #zmiany nazw
             
             for group_name, actions in selected_groups.items():
                 for action in actions:
@@ -253,7 +253,7 @@ def main():
                         print(result)
                     elif group_name == "move_to_x" and action["path"] not in deleted_paths:
                         if action["path"] in renamed_paths:
-                            #old_dir = os.path.dirname(action["path"])
+                            
                             new_name = os.path.basename(renamed_paths[action["path"]])  
                             new_path = os.path.join(MAIN_FOLDER, new_name)  
                             action["path"] = renamed_paths[action["path"]]  
